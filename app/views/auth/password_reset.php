@@ -3,55 +3,129 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reset Password</title>
+    <title>Optical Clinic - Reset Password</title>
     <link rel="icon" type="image/png" href="<?=base_url();?>public/img/favicon.ico"/>
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- Styles -->
-    <link href="<?=base_url();?>public/css/main.css" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('<?=base_url();?>public/assets/background.jpg') center center/cover no-repeat;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('<?=base_url();?>public/assets/background.jpg') center center/cover no-repeat;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .reset-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card-header {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .reset-links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .reset-links a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .reset-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <?php
-    include APP_DIR.'views/templates/nav_auth.php';
-    ?>
-    <main class="py-4">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Reset Password</div>
-                        <div class="card-body">
-                            <form method="POST" action="<?=site_url('auth/password-reset');?>">
-                                <?php csrf_field(); ?>
-                                <div class="row mb-3">
-                                    <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
-                                    <div class="col-md-6">
-                                        <?php $LAVA =& lava_instance(); ?>
-                                        <input id="email" type="email" class="form-control <?=$LAVA->session->flashdata('alert');?>" name="email" required>
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>We can&#039;t find a user with that email address.</strong>
-                                        </span>
-                                        <span class="valid-feedback" role="alert">
-                                            <strong>Reset password link was sent to your email.</strong>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Send Password Reset Link
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+    <div class="reset-container">
+        <div class="card">
+            <div class="card-header">Reset Password</div>
+            <div class="card-body">
+                <form method="POST" action="<?=site_url('auth/password-reset');?>">
+                    <?php csrf_field(); ?>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" class="form-control" name="email" required>
                     </div>
-                </div>
+
+                    <button type="submit" class="btn btn-primary">Send Password Reset Link</button>
+
+                    <div class="reset-links">
+                        <a href="<?=site_url('auth/login');?>">Back to Login</a>
+                    </div>
+                </form>
             </div>
         </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </div>
 </body>
 </html>

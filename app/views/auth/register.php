@@ -3,64 +3,140 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+    <title>Optical Clinic - Register</title>
     <link rel="icon" type="image/png" href="<?= base_url(); ?>public/img/favicon.ico"/>
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
     <link href="<?= base_url(); ?>public/css/main.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>public/css/style.css" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+        body {
+            background: url('<?=base_url();?>public/assets/background.jpg') center center/cover no-repeat;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('<?=base_url();?>public/assets/background.jpg') center center/cover no-repeat;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card-header {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .register-links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .register-links a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .register-links a:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <?php include APP_DIR.'views/templates/nav_auth.php'; ?>
-    <main class="py-4">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Register</div>
-                        <div class="card-body">
-                            <?php flash_alert(); ?> <!-- Display flash alert for errors/success -->
-                            <form id="regForm" method="POST" action="<?= site_url('auth/register'); ?>">
-                                <div class="row mb-3">
-                                    <label for="username" class="col-md-4 col-form-label text-md-end">Username</label>
-                                    <div class="col-md-6">
-                                        <input id="username" type="text" class="form-control" name="username" required>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
-                                    <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control" name="email" required>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="password" class="col-md-4 col-form-label text-md-end">Password</label>
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" required>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">Confirm Password</label>
-                                    <div class="col-md-6">
-                                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-                                    </div>
-                                </div>
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Register
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+    <div class="register-container">
+        <div class="card">
+            <div class="card-header">Optical Clinic - Register</div>
+            <div class="card-body">
+                <?php flash_alert(); ?>
+                <form method="POST" action="<?= site_url('auth/register'); ?>">
+                    <a href="<?= site_url('auth/login'); ?>" class="btn btn-secondary">Already have an account? Login</a>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" class="form-control" name="username" required autofocus>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" class="form-control" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" class="form-control" name="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+
+                    <div class="register-links">
+                        <a href="<?= site_url('auth/password-reset'); ?>">Forgot Your Password?</a>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
