@@ -15,7 +15,8 @@ class HomeController extends Controller
         $recent_prescriptions = $this->model->getRecentPrescriptions();
         $low_stock_frames = $this->model->getLowStockFrames();
 
-        var_dump($appointments_count, $prescriptions_count, $frames_count, $patients_count);
+        // Fetching patient check-ins data
+        $patients = $this->model->getPatientCheckins();
 
         $this->call->view('home', [
             'appointments_count' => $appointments_count,
@@ -24,7 +25,8 @@ class HomeController extends Controller
             'patients_count' => $patients_count,
             'upcoming_appointments' => $upcoming_appointments,
             'recent_prescriptions' => $recent_prescriptions,
-            'low_stock_frames' => $low_stock_frames
+            'low_stock_frames' => $low_stock_frames,
+            'patients' => $patients // Passing the patient data
         ]);
     }
 

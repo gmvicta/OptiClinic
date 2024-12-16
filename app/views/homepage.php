@@ -288,10 +288,10 @@
                                 <?php if (!empty($patients)): ?>
                                     <?php foreach ($patients as $patient): ?>
                                         <tr>
-                                            <td><?= $patient->name; ?></td>
-                                            <td><?= $patient->appointment_time; ?></td>
+                                            <td><?= $patient->username; ?></td> <!-- Using username from users table -->
+                                            <td><?= $patient->date . ' ' . $patient->time; ?></td>
                                             <td>
-                                                <span class="badge bg-success"><?= $patient->status; ?></span>
+                                                <span class="badge bg-success"><?= $patient->status; ?></span> <!-- Using status from patients table -->
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

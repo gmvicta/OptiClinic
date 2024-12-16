@@ -175,28 +175,7 @@
         <?php endif; ?>
 
         <div class="mb-4">
-            <h3>Create New Appointment</h3>
-            <form action="<?= site_url('optical-clinic/appointments/create'); ?>" method="POST">
-                <div class="mb-3">
-                    <label for="date" class="form-label">Date</label>
-                    <input type="date" name="date" id="date" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="time" class="form-label">Time</label>
-                    <input type="time" name="time" id="time" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select name="status" id="status" class="form-control" required>
-                        <option value="Pending">Pending</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Create Appointment</button>
-            </form>
+            <h3>Appointment</h3>
         </div>
 
         <div class="table-responsive">
