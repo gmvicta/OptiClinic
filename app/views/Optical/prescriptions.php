@@ -167,7 +167,7 @@
         <div class="mb-4">
             <form action="<?= site_url('optical-clinic/prescriptions/create'); ?>" method="POST">
                 <div class="mb-3">
-                    <label for="patient_id" class="form-label">Patient ID</label>
+                    <label for="patient_id" class="form-label">Patient Name</label>
                     <input type="text" name="patient_id" id="patient_id" class="form-control" required>
                 </div>
                 <div class="mb-3">
@@ -194,7 +194,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Patient ID</th>
+                    <th>Patient Name</th> <!-- Changed from Patient ID to Patient Name -->
                     <th>Medication</th>
                     <th>Dosage</th>
                     <th>Duration</th>
@@ -207,7 +207,7 @@
                     <?php foreach ($prescriptions as $prescription): ?>
                         <tr>
                             <td><?= $prescription['id']; ?></td>
-                            <td><?= $prescription['patient_id']; ?></td>
+                            <td><?= $prescription['patient_first_name']; ?></td> <!-- Displaying Patient's First Name -->
                             <td><?= $prescription['medication']; ?></td>
                             <td><?= $prescription['dosage']; ?></td>
                             <td><?= $prescription['duration']; ?></td>

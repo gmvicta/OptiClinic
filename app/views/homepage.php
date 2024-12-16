@@ -264,6 +264,9 @@
                             <a href="<?= site_url('optical-clinic/frames'); ?>" class="btn btn-warning">
                                 <i class="bi bi-plus-circle"></i> Add Frames
                             </a>
+                            <a href="<?= site_url('optical-clinic/patient'); ?>" class="btn btn-success">
+                                <i class="bi bi-plus-circle"></i> Add Patient
+                            </a>
                         </div>
                     </div>
                 </div>

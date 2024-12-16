@@ -79,3 +79,11 @@ $router->get('/optical-clinic/prescriptions/create', 'PrescriptionController::cr
 $router->get('/optical-clinic/prescriptions/edit/{id}', 'PrescriptionController::edit_prescription');
 $router->post('/optical-clinic/prescriptions/update/{id}', 'PrescriptionController::update_prescription');
 $router->get('/optical-clinic/prescriptions/delete/{id}', 'PrescriptionController::delete_prescription');
+
+//=== PATIENT ===//
+$router->get('/optical-clinic/patient', 'PatientC::patient');
+$router->post('/optical-clinic/patient/create', 'PatientC::create_patient');
+$router->get('/optical-clinic/patient/edit/{id}', 'PatientC::edit_patient');
+$router->post('/optical-clinic/patient/update', 'PatientC::update_patient');
+$router->get('/optical-clinic/patient/delete/{id}', 'patientC::delete_patient');
+$router->post('/optical-clinic/patient/delete', 'PatientC::delete_patient');

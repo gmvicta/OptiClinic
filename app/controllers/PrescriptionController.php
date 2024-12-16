@@ -18,24 +18,37 @@ class PrescriptionController extends Controller
     public function prescriptions()
     {
         $data['prescriptions'] = $this->PrescriptionModel->get_prescriptions();
-        $this->call->view('Optical/prescriptions', $data);
+    
+        // Fetching first_name for each prescription
+        foreach ($data['prescriptions'] as &$prescription) {
+            $patient = $this->PatientModel->get_patient_by_id($prescription['patient_id']);
+            $prescription['patient_first_name'] = $patient ? $patient['first_name'] : 'N/A'; // Fallback to 'N/A' if patient not found
     }
 
-    //=== CREATE PRESCRIPTION ===//
+    $this->call->view('Optical/prescriptions', $data);
+    }
+
+    // CREATE PRESCRIPTIONS
     public function create_prescription()
     {
         $patient_id = $_POST['patient_id'] ?? null;
         $patient = $this->PatientModel->get_patient_by_id($patient_id);
 
         if ($patient) {
+            // Retrieve the patient's first name
+            $first_name = $patient['first_name'];
+
+            // Prepare the data for the new prescription
             $data = [
-                'patient_id' => $patient_id,
+                'patient_id' => $patient_id, // Keep patient_id for reference
+                'patient_name' => $first_name, // Store patient's first_name in the prescription
                 'medication' => $_POST['medication'] ?? '',
                 'dosage' => $_POST['dosage'] ?? '',
                 'duration' => $_POST['duration'] ?? '',
                 'renewal_date' => $_POST['renewal_date'] ?? ''
             ];
 
+            // Create the prescription and check if it was successful
             if ($this->PrescriptionModel->create_prescription($data)) {
                 $_SESSION['message'] = 'Prescription Created Successfully';
                 header("Location: " . site_url('optical-clinic/prescriptions'));
